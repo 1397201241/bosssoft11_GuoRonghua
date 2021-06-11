@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div><label for="1">input1:</label><input id="1"></input></div>
+<div><label for="2">input2:</label><input id="2"></input></div>
+<div><button onclick="getUU()">输出</button></div>
+<div id="3"></div>
+<div id="4"></div>
+<div id="5"></div>
+
+</body>
+<script>
+
+    var getUU=function () {
+        var input1=window.document.getElementById('1').value;
+        var input2=window.document.getElementById('2').value;
+        i1=input1.split(',');
+        i2=input2.split(',');
+        for (var i=0;i<i1.length;i++){
+            i1[i]=Number(i1[i])
+        }
+        for (var i=0;i<i2.length;i++){
+            i2[i]=Number(i2[i])
+        }
+
+        let a=new Set(i1);
+        let b=new Set(i2);
+//并集
+
+        let union=new Set([...a,...b]);
+        console.log("并集：");
+        console.log(union);
+
+//交集
+        let intersect=new Set([...a].filter(x=>b.has(x)));
+        console.log("交集:");
+        console.log(intersect);
+
+//差集
+        let diff=new Set([...a].filter(x=>!b.has(x)));
+        console.log("差集:")
+        console.log(diff)
+    }
+
+</script>
+</html>

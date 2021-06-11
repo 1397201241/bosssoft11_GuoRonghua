@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trees>
+  <tree path="/build" title="构建相关"></tree>
+  <tree path="/mock" title="模拟后端数据"></tree>
+  <tree path="/plop-templates" title="基本模板"></tree>
+  <tree path="/public" title="公共静态资源"></tree>
+  <tree path="/src" title="源代码">
+    <tree path="/assets" title="主题 字体等静态资源"></tree>
+    <tree path="/components" title="全局公用组件">
+      <tree path="/Breadcrumb" title="页面定位面包屑"></tree>
+    </tree>
+    <tree path="/directive" title="全局指令"></tree>
+    <tree path="/filters" title="全局 filters"></tree>
+    <tree path="/icons" title="项目所有 avg icons"></tree>
+    <tree path="/layout" title="全局 layout"></tree>
+    <tree path="/router" title="路由"></tree>
+    <tree path="/store" title="全局 store管理"></tree>
+    <tree path="/styles" title="全局样式"></tree>
+    <tree path="/utils" title="全局公用方法"></tree>
+    <tree path="/vendor" title="全局vendor"></tree>
+    <tree path="/views" title="所有页面"></tree>
+  </tree>
+</trees>

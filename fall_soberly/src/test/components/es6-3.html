@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*var Student1={id:1,name:'张三'};
+    var Student2={id:2,name:'李四'};
+    var Score1={id:1,chinese:90,math:59,english:70};
+    var Score2={id:2,chinese:98,math:78,english:69};
+    let student=[Student1,Student2];
+    let score=[Score1,Score2];
+    let ans=[]
+    for (var i=0;i<student.length;i++){
+        console.log(student[i])
+    }
+    for (var i=0;i<student.length;i++){
+
+        console.log(score[i])
+    }
+    for (var i=0;i<student.length;i++){
+        console.log(Object.assign(student[i],score[i]))
+    }*/
+    class Student {
+        constructor(name, chinese,math,english) {
+            this.name = name;
+            this.chinese = chinese;
+            this.math = math;
+            this.english = english;
+        }
+        total() {
+            let total=this.chinese+this.math+this.english
+            return total;
+        }
+    }
+    let myStudent=new Student('张三',90,80,89)
+    console.log(myStudent.total())//259
+    class GoodStudent extends Student{
+        constructor(name,chinese,math,english) {
+            super(name,chinese,math,english);
+        }
+        toString(){
+            console.log(this.name)
+            console.log(this.chinese)
+            console.log(this.math)
+            console.log(this.english)
+        }
+    }
+    let myGoodStudent=new GoodStudent('张三',99,89,99)
+    myGoodStudent.toString()
+</script>
+</html>

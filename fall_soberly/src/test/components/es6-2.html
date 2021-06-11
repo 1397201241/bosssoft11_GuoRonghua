@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>MAP</title>
+</head>
+
+<body>
+<script>
+    function myFunction() {
+        var num = 10;
+        var studentMap = new Map();
+        for (i = 1; i <= num; i++) {
+            no = "no" + i;
+            score = "score" + i;
+            var s1 = document.getElementById('' + no).value;
+            var s2 = document.getElementById('' + score).value;
+            studentMap.set(s1, s2);
+        }
+        var total = 0;
+        studentMap.forEach(function (value, key) {
+            total += parseInt(value);
+        }, studentMap);
+        var avr = total / num;
+        document.getElementById("hint").innerHTML = "大于平均分" + avr + "分的学生信息：";
+        var stu = "";
+        studentMap.forEach(function (value, key) {
+            if (parseInt(value) >= avr) {
+                stu += "<" + key + " , " + value + "><br />";
+            }
+        }, studentMap);
+        document.getElementById("student").innerHTML = stu;
+    }
+</script>
+<br /><b id="title"></b><br /><br />
+<script>
+    document.getElementById("title").innerHTML = "请输入学生信息：";
+    var rows = 3;
+    var cols = 10;
+    var str = "<table border='1dp'><thead><tr><td style='text-align: center;'></td><td style='text-align: center;'>学号</td><td style='text-align: center;'>成绩</td></tr></thead><tbody>";
+    for (i = 1; i <= cols; i++) {
+        s = "学生 " + i;
+        no = "no" + i;
+        score = "score" + i;
+        str += "<tr><td>" + s + "</td>"
+        str += "<td><input id='" + no + "' type='text'></td>";
+        str += "<td><input id='" + score + "' type='text'></td></tr>"
+    }
+    str += "</tbody></table>";
+    document.write(str)
+</script>
+<input type="submit" onclick="myFunction()" value="计算" style="margin-top: 10px;margin-bottom: 10px;"><br />
+<b id="hint"></b><br />
+<a style="margin-top: 10px;" id="student"></a><br />
+</body>
+
+</html>

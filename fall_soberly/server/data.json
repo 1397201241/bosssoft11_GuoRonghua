@@ -1,0 +1,115 @@
+{
+  "customer": [
+    {
+      "id": 1,
+      "sex": "男",
+      "name": "李武",
+      "tel": "15273166485",
+      "address": "福建福州"
+    },
+    {
+      "id": 2,
+      "sex": "男",
+      "name": "郭荣华",
+      "ename": "San Zhang",
+      "assistant_code": "zs",
+      "type": "CustomerType",
+      "contacts": 15273166485,
+      "mobile": 15273166485,
+      "tel": "15273166485",
+      "address": "湖南长沙"
+    },
+    {
+      "id": 3,
+      "sex": "男",
+      "name": "夏🗡冰",
+      "ename": "San Zhang",
+      "assistant_code": "zs",
+      "type": "CustomerType",
+      "contacts": 15273166485,
+      "mobile": 15273166485,
+      "tel": "15273164545",
+      "address": "湖南长沙"
+    },
+    {
+      "id": 4,
+      "sex": "女",
+      "name": "林林林",
+      "tel": "13471561522",
+      "address": "广西玉林"
+    },
+    {
+      "id": 5,
+      "sex": "男",
+      "name": "女的",
+      "tel": "15577776666",
+      "address": "福建的"
+    }
+  ],
+  "account": [
+    {
+      "username": "郭荣华",
+      "password": "fighting",
+      "city": "长沙",
+      "country": "中国",
+      "zip": "410000",
+      "phone": "15273166485",
+      "address": "湖南长沙"
+    },
+    {
+      "username": "test",
+      "password": "123456",
+      "city": "长沙",
+      "country": "中国",
+      "zip": "410000",
+      "phone": "15273166485",
+      "address": "湖南长沙"
+    }
+  ],
+  "items": [
+    {
+      "item_id": "1",
+      "list_price": 5998,
+      "description": "XM11 Ultra",
+      "img_path": "http://i1.mifile.cn/a1/pms_1617008568.53329550!280x280.jpg"
+    },
+    {
+      "item_id": "2",
+      "list_price": 99,
+      "description": "体脂称",
+      "img_path": "http://i1.mifile.cn/a1/pms_1555659431.52713594!140x140.jpg"
+    },
+    {
+      "item_id": "3",
+      "list_price": 99,
+      "description": "充电宝",
+      "img_path": "http://i1.mifile.cn/a1/pms_1563355921.93119865!280x280.jpg"
+    },
+    {
+      "item_id": "4",
+      "list_price": 2599,
+      "description": "显示器",
+      "img_path": "http://i1.mifile.cn/a1/pms_1621022440.50426069!280x280.jpg"
+    },
+    {
+      "item_id": "5",
+      "list_price": 349,
+      "description": "儿童手表",
+      "img_path": "http://i1.mifile.cn/a1/pms_1592820091.87033659!140x140.jpg"
+    }
+  ],
+  "cart_item": [
+    {
+      "id": 698,
+      "username": "test",
+      "item_id": "4",
+      "quantity": 1
+    },
+    {
+      "id": 361,
+      "username": "test",
+      "item_id": "1",
+      "quantity": 1
+    }
+  ]
+}
