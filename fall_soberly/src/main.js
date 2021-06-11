@@ -16,6 +16,7 @@ import ItemCard from './views/itemCard/index';
 
 Vue.use(ElementUI);
 Vue.use(VueRouter);
+//注入store
 Vue.use(Vuex);
 Vue.config.productionTip = false;
 
