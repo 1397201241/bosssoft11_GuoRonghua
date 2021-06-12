@@ -100,28 +100,49 @@
   ],
   "cart_item": [
     {
-      "id": 698,
-      "username": "test",
-      "item_id": "4",
-      "quantity": 1
-    },
-    {
-      "id": 361,
+      "id": 618,
       "username": "test",
       "item_id": "1",
-      "quantity": 1
+      "quantity": 1,
+      "description": "XM11 Ultra",
+      "img_path": "http://i1.mifile.cn/a1/pms_1617008568.53329550!280x280.jpg",
+      "list_price": 5998
     },
     {
-      "id": 635,
+      "id": 769,
+      "username": "test",
+      "item_id": "1",
+      "quantity": 1,
+      "description": "XM11 Ultra",
+      "img_path": "http://i1.mifile.cn/a1/pms_1617008568.53329550!280x280.jpg",
+      "list_price": 5998
+    },
+    {
+      "id": 855,
       "username": "test",
       "item_id": "2",
-      "quantity": 1
+      "quantity": 1,
+      "description": "体脂称",
+      "img_path": "http://i1.mifile.cn/a1/pms_1555659431.52713594!140x140.jpg",
+      "list_price": 99
     },
     {
-      "id": 158,
+      "id": 981,
       "username": "test",
       "item_id": "3",
-      "quantity": 1
+      "quantity": 1,
+      "description": "充电宝",
+      "img_path": "http://i1.mifile.cn/a1/pms_1563355921.93119865!280x280.jpg",
+      "list_price": 99
+    },
+    {
+      "id": 412,
+      "username": "test",
+      "item_id": "2",
+      "quantity": 1,
+      "description": "体脂称",
+      "img_path": "http://i1.mifile.cn/a1/pms_1555659431.52713594!140x140.jpg",
+      "list_price": 99
     }
   ]
 }
