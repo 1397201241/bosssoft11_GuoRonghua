@@ -1,18 +1,16 @@
 <template>
     <el-container id="itemCard">
-        <el-row :gutter="20">
+        <el-row :gutter="20" justify="center">
             <el-col :span="4.8" v-for="(o) in 5" :key="o">
                 <el-card :body-style="{ padding: '0px' }" style="width: 200px" shadow="hover"
                          @mouseenter.native="trueItemVisible(o)" @mouseleave.native="falseItemVisible(o)"
                 >
-                    <img :src="items[o-1].img_path" class="image">
+                    <img :src="$store.state.cart.items[o-1].img_path" class="image">
                     <div style="padding: 5px">
-                        <span>{{items[o-1].description}}</span>
+                        <span>{{$store.state.cart.items[o-1].description}}</span>
                     </div>
                     <div style="padding: 5px;color: #ff9270">
-                        <span>{{items[o-1].list_price}}元</span>
-
-
+                        <span>{{$store.state.cart.items[o-1].list_price}}元</span>
                     </div>
                     <div class="bottom">
                         <el-button v-show="itemVisible[o-1]" size="mini" @click="addItem(o)">加入购物车</el-button>
@@ -28,7 +26,6 @@
         name: "index",
         data() {
             return {
-                items:[],
                 itemVisible:[false,false,false,false,false],
                 //购物车商品模型
                 item_model:{
@@ -42,7 +39,6 @@
         created:function(){
             // 初始化状态
             this.getItemsList();
-            console.log(this.$store.state.cart.items[0].id)
         },
         methods:{
             //修改显示状态
@@ -54,19 +50,16 @@
             },
             //获取商品列表
             getItemsList(){
-                fetch('http://localhost:3000/items')
-                    .then(res=>res.json())
-                    .then(
-                        myJson=>{
-                            this.items=myJson;
-                        }
-                    ).catch(err=> console.log(err));
+                this.$store.commit('cart/getItems')
             },
             //添加商品至购物车
             addItem(index){
                 let item=this.item_model;
-                let addItem=this.items[index-1];
+                let addItem=this.$store.state.cart.items[index-1];
                 item.id=Math.floor(Math.random()*1000);
+                item.description=addItem.description;
+                item.img_path=addItem.img_path;
+                item.list_price=addItem.list_price;
                 item.item_id=addItem.item_id;
                 item.quantity=1;
                 //添加至购物车
@@ -85,8 +78,6 @@
                             //刷新一次?
                         }
                     ).catch(err=> console.log(err));
-                //
-                console.log("加了吗")
             }
         }
     }
@@ -94,7 +85,7 @@
 
 <style scoped>
     #itemCard{
-        margin-left: 90px;
+
     }
     #itemCard .bottom {
         height: 28px;
