@@ -3,13 +3,10 @@
 // initial state
 // shape: [{ id, quantity }]
 const state = () => ({
-
-    items: [
-        {
-            id:1,
-            count:0
-        }
-    ],
+    //商品信息
+    items: [],
+    //购物车信息
+    cart_item: [],
     add_item: [],
     checkoutStatus: null
 });
@@ -57,57 +54,31 @@ const actions = {
             commit('products/decrementProductInventory', { id: product.id }, { root: true })
         }
     }
-}
+};
 
-// mutations
+// 提交 mutation 是更改状态的唯一方法，并且这个过程是同步的。
 const mutations = {
-    pushProductToCart (state, index) {
-        let item={
-            id: 0,
-            username: "test",
-            item_id: "0",
-            quantity: 0
-        };
-        let addItem=state.items[index-1];
-        item.id=Math.floor(Math.random()*1000);
-        item.item_id=addItem.item_id;
-        item.quantity=1;
-        //添加至购物车
-        fetch("http://localhost:3000/cart_item",{
-            method:'POST',
-            body:JSON.stringify(item),
-            headers:{
-                'Content-Type':'application/json',
-            },
-        })
-            .then(response=>response.json())
+    //获取商品信息
+    getItems(state) {
+        fetch('http://localhost:3000/items')
+            .then(res=>res.json())
             .then(
                 myJson=>{
-                    console.log(myJson);
-                    this.$emit("AddItemButtonClick")
-                    //刷新一次?
+                    state.items=myJson;
                 }
             ).catch(err=> console.log(err));
-        //
-        console.log("加了吗")
-        state.add_item.push({
-            quantity: 1
-        })
     },
-
-    incrementItemQuantity (state, { id }) {
-        const cartItem = state.items.find(item => item.id === id)
-        cartItem.quantity++
+    //获取购物车信息
+    getCartItems(state){
+        fetch('http://localhost:3000/cart_item')
+            .then(res=>res.json())
+            .then(
+                myJson=>{
+                    state.cart_item=myJson;
+                }
+            ).catch(err=> console.log(err));
     },
-
-    setCartItems (state, { items }) {
-        state.items = items
-    },
-
-    setCheckoutStatus (state, status) {
-        state.checkoutStatus = status
-    }
-}
+};
 
 export default {
     namespaced: true,
