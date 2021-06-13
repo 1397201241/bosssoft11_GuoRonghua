@@ -8,11 +8,7 @@ const state = () => ({
 
 // getters 相当于计算属性
 const getters = {
-    /*cartTotalPrice: (state, getters) => {
-        return getters.cartProducts.reduce((total, product) => {
-            return total + product.price * product.quantity
-        }, 0)
-    }*/
+    
 };
 
 // actions 内部可以执行异步操作，context.commit()提交mutations来修改状态
