@@ -2,9 +2,8 @@ let regId = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
 let email = /^(\w+\.?)*\w+@(?:\w+\.)\w+$/;    //邮箱
 let tel = /^1[345789]\d{9}$/;        //手机号码
 let name = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,10}$/;   //姓名
-let password = /^[0-9a-zA-Z_]{6,20}$/g;   //密码
-let FormValidate = (function () {
-    // eslint-disable-next-line
+//let password = /^[0-9a-zA-Z_]{6,20}$/g;   //密码
+let  FormValidate =function () {
     function FormValidate() {}
     // From表单验证规则  可用于公用的校验部分
     FormValidate.Form = function () {
@@ -12,11 +11,9 @@ let FormValidate = (function () {
             // 姓名的验证规则
             Name: function (rule, value, callback) {
                 if (!value) {
-                    return callback(new Error('姓名不能为空'))
+                    return callback(new Error('用户名不能为空'))
                 }
-                if (!name.test(value)) {
-                    callback(new Error('请输入正确姓名!'))
-                } else {
+                else {
                     callback()
                 }
             },
@@ -54,20 +51,15 @@ let FormValidate = (function () {
                 }
             },
             // 密码的验证
-            Password: (rule, value, callback) => {
-
+            Password: (rule,value,callback)=>{
+                //密码正则
+                let password=/^[0-9a-zA-Z_]{6,20}$/g;
                 if (!value) {
-                    console.log('密码为空')
                     return callback(new Error('密码不能为空'))
                 }
                 if (!password.test(value)) {
-                    console.log(password)
-                    console.log('密码不正确')
-                    console.log(value)
-                    callback(new Error('请正确填写密码'))
+                    callback(new Error('密码需包含数字、大小写字母或者下划线'))
                 } else {
-                    console.log('密码正确')
-                    console.log(value)
                     callback()
                 }
             }
@@ -91,5 +83,6 @@ let FormValidate = (function () {
         }
     };
     return FormValidate
-}())
-exports.FormValidate = FormValidate
+};
+export {FormValidate}
+
