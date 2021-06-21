@@ -4,7 +4,7 @@ src/views/itemCard
 src/views/shoppingCart   
 购物车状态管理 
 
-store/modules/cart的
+store/modules/cart
 
 购物车状态管理  
 store/modules/login
