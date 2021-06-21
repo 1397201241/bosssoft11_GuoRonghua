@@ -125,7 +125,7 @@
 
 <script>
     import QueryPanel from "../../components/QueryPanel/index";
-    import Format from "../../utils/formRule/common"
+    import Format from "../../utils/validate"
     export default {
         name: "UserList",
         components: {QueryPanel},

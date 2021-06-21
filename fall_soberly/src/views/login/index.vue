@@ -74,7 +74,7 @@
                 </canvas>
             </el-form-item>
             <!--登录按钮-->
-            <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
+            <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.prevent="handleLogin">
                 Login
             </el-button>
         </el-form>
@@ -83,18 +83,13 @@
 </template>
 
 <script>
-    // import Format from "../../utils/formRule/common";
+    import JSEncrypt from 'jsencrypt'
+    //校验规则
+    import {FormValidate} from '../../utils/validate'
+
     export default {
         name: "Login",
         data(){
-            /*用户名校验*/
-            const validateUsername = (rule,value,callback)=>{
-                if (!value){
-                    callback(new Error('用户名不能为空'));
-                }else{
-                    callback();
-                }
-            };
             /*验证码校验*/
             const validateVerificationCode = (rule,value,callback)=>{
                 if (value!==this.verificationC){
@@ -103,7 +98,7 @@
                     callback();
                 }
             };
-            /*密码校验*/
+            /*//密码校验
             const validatePassword = (rule,value,callback)=>{
                 //密码正则
                 let password=/^[0-9a-zA-Z_]{6,20}$/g;
@@ -111,11 +106,11 @@
                     return callback(new Error('密码不能为空'))
                 }
                 if (!password.test(value)) {
-                    callback(new Error('请正确填写密码'))
+                    callback(new Error('密码需包含数字、大小写字母或者下划线'))
                 } else {
                     callback()
                 }
-            };
+            };*/
             return {
                 verificationC:'',
                 loginForm:{
@@ -123,7 +118,7 @@
                     password:'',
                     verificationCode:''
                 },
-                account:[],
+                jsEncrypt:[],
                 capsTooltip: false,
                 loading: false,
                 showDialog: false,
@@ -131,17 +126,18 @@
                 otherQuery: {},
                 loginRules:{
                     username:[
-                        { validator:validateUsername,trigger:'blur'},
+                        {
+                            validator:FormValidate().Form().Name,
+                            trigger:'blur'
+                        },
                         { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' },
                     ],
                     password:[
                         {
-                            // validator:Format.FormValidate.Form().Password,
-                            validator:validatePassword,
+                            validator:FormValidate().Form().Password,
+                            /*validator:validatePassword,*/
                             trigger: 'blur'
                         }
-                        /*{ min: 8, max: 16, message: '长度在 8 到 16 个字符', trigger: 'blur' },*/
-
                     ],
                     verificationCode:[
                         {
@@ -156,7 +152,6 @@
 
         },*/
         created:function(){
-            // 初始化状态
             this.getAccount();
         },
         mounted() {
@@ -174,46 +169,66 @@
         destroyed() {
         },
         methods: {
+            //模拟后台用户验证
+            userAuthentication(username,encryptPassword){
+                //用户组
+                let users=[];
+                for (let user of this.$store.state.login.account){
+                    users.push(user['username'])
+                }
+                //用户存在判断
+                if (users.includes(username)){
+                    //创建解密对象实例
+                    let jsEncrypt=new JSEncrypt();
+                    this.$store.dispatch('login/getPrivateKey').then(
+                        //私钥
+                        privateKey=>{
+                            //设置解密的私钥
+                            jsEncrypt.setPrivateKey(privateKey);
+                            //密码解密
+                            let decryptPassword=jsEncrypt.decrypt(encryptPassword);
+                            this.$store.dispatch('login/userAuthentication',{username,decryptPassword}).then(()=>{
+                                this.$router.push({
+                                    path:'/Home/ItemCard',
+                                    query:{
+                                        user:{username},
+                                        // user:user
+                                    }
+                                });
+                                this.$notify.success({
+                                    title: '登录成功！'
+                                });
+                            });
+                        }
+                    )
+
+                }else {
+                    this.$notify.error({
+                        title: '用户不存在！'
+                    });
+                }
+            },
             //获取用户账号密码
             getAccount(){
-                fetch('http://localhost:3000/account')
-                    .then(res=>res.json())
-                    .then(
-                        myJson=>{
-                            this.account=myJson;
-                        }
-                    ).catch(err=> console.log(err));
+                this.$store.dispatch('login/getAccount')
             },
             //登录
             handleLogin() {
                 this.$refs['loginForm'].validate(valid=>{
                     if (valid){
-                        //用户组
-                        let users=[];
-                        for (let user of this.account){
-                            users.push(user['username'])
-                        }
-                        //用户存在判断
-                        if (users.includes(this.loginForm.username)){
-                            for (let user of this.account){
-                                if (this.loginForm.username===user['username']&&this.loginForm.password===user['password']){
-                                    this.$router.push({
-                                        path:'/Home/ItemCard',
-                                        query:{
-                                            user:user,
-                                            // user:user
-                                        }
-                                    });
-                                    this.$notify.success({
-                                        title: '登录成功！'
-                                    });
-                                }
+                        //创建加密对象实例
+                        let jsEncrypt=new JSEncrypt();
+                        //获取公钥并加密
+                        this.$store.dispatch('login/getPublicKey').then(
+                            publicKey=>{
+                                //设置加密公钥
+                                jsEncrypt.setPublicKey(publicKey);
+                                //密码加密
+                                let encryptPassword=jsEncrypt.encrypt(this.loginForm.password);
+                                //匹配验证
+                                this.userAuthentication(this.loginForm.username,encryptPassword)
                             }
-                        }else {
-                            this.$notify.error({
-                                title: '用户不存在！'
-                            });
-                        }
+                        )
                     }
                     else {
                         this.$notify.error({

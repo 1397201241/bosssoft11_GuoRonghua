@@ -59,7 +59,7 @@
 
 <script>
     import ItemCard from "../../views/itemCard/index";
-    import Format from "../../utils/formRule/common"
+    import Format from "../../utils/validate"
     export default {
         name: "ShoppingCart",
         components: {ItemCard},
@@ -106,7 +106,7 @@
             },
             //获取购物车列表信息
             getCartItemsList(){
-                this.$store.commit('cart/getCartItems')
+                this.$store.dispatch('cart/getCartItems')
             }
         },
         /*watch:{

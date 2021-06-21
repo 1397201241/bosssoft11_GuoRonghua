@@ -22,6 +22,7 @@
 </template>
 
 <script>
+    /*import {getToken} from "../../utils/auth";*/
     export default {
         name: "index",
         data() {
@@ -38,6 +39,7 @@
         },
         created:function(){
             // 初始化状态
+            /*this.$store.dispatch('login')*/
             this.getItemsList();
         },
         methods:{
@@ -50,10 +52,11 @@
             },
             //获取商品列表
             getItemsList(){
-                this.$store.commit('cart/getItems')
+                this.$store.dispatch('cart/getItems')
             },
             //添加商品至购物车
             addItem(index){
+                //待添加商品信息
                 let item=this.item_model;
                 let addItem=this.$store.state.cart.items[index-1];
                 item.id=Math.floor(Math.random()*1000);
@@ -78,7 +81,8 @@
                             //刷新一次?
                         }
                     ).catch(err=> console.log(err));
-            }
+            },
+
         }
     }
 </script>
