@@ -3,37 +3,68 @@
   <component name="ChangeListManager">
     <list default="true" id="2be1f3b2-9953-4896-9b62-fe6346e219cd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/store/modules/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/cart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/itemCard/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/itemCard/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/login/Login.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/shoppingCart/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/shoppingCart/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/userList/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/userList/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1tmzXuj4o0r8nyORqC1t8pzXEfE" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/utils" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\项目\bosssoft11_GuoRonghua\fall_soberly\src\utils" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\项目\bosssoft11_GuoRonghua\fall_soberly\src\utils" />
+      <recent name="G:\项目\bosssoft11_GuoRonghua\fall_soberly\src\api" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -47,7 +78,16 @@
       <updated>1623389095317</updated>
       <workItem from="1623389096472" duration="345000" />
       <workItem from="1623422381779" duration="7076000" />
-      <workItem from="1623471237576" duration="745000" />
+      <workItem from="1623471237576" duration="7722000" />
+      <workItem from="1623551661669" duration="16052000" />
+      <workItem from="1623722001544" duration="662000" />
+      <workItem from="1623809071054" duration="1260000" />
+      <workItem from="1623913785894" duration="17545000" />
+      <workItem from="1624002168907" duration="9554000" />
+      <workItem from="1624030484688" duration="2531000" />
+      <workItem from="1624033026845" duration="11000" />
+      <workItem from="1624075947326" duration="14887000" />
+      <workItem from="1624236791947" duration="3534000" />
     </task>
     <servers />
   </component>
@@ -55,6 +95,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="361" y="71" key="#ESLint" timestamp="1624004153383">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="71" key="#ESLint/0.0.1536.824@0.0.1536.824" timestamp="1624004153383" />
     <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1623389441249">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -71,5 +115,13 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1623389441249" />
+    <state x="270" y="54" key="SettingsEditor" timestamp="1623945438152">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="270" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1623945438152" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1624086783624">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1624086783624" />
   </component>
 </project>

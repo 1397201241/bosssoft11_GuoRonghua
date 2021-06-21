@@ -57,13 +57,29 @@
       "address": "湖南长沙"
     },
     {
-      "username": "test",
+      "username": "admin",
       "password": "123456",
+      "role": "admin",
       "city": "长沙",
       "country": "中国",
       "zip": "410000",
       "phone": "15273166485",
       "address": "湖南长沙"
+    },
+    {
+      "username": "editor",
+      "password": "123456",
+      "role": "editor",
+      "city": "长沙",
+      "country": "中国",
+      "zip": "410000",
+      "phone": "15273166485",
+      "address": "湖南长沙"
+    }
+  ],
+  "info": [
+    {
+      "token": ""
     }
   ],
   "items": [
@@ -143,6 +159,12 @@
       "description": "体脂称",
       "img_path": "http://i1.mifile.cn/a1/pms_1555659431.52713594!140x140.jpg",
       "list_price": 99
+    }
+  ],
+  "JSEncrypt": [
+    {
+      "publicKey":"-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC8kjsLScGhHDL/E6a4CntomRpZVsCbFUs3+F1B2MWAsIpTDD630RaGxQIDajRbxEzScQkJxdGKXDaZxwwP4+qtnmUtfRboA6GclORuUK2WF+6ItoAbZm3b3jelUC8yqxTxhVzPgAdj7AEe9oEHGmBtaXu4wSSalrkqNuiFiF+ZCQIDAQAB-----END PUBLIC KEY-----",
+      "privateKey":"-----BEGIN RSA PRIVATE KEY-----MIICXQIBAAKBgQC8kjsLScGhHDL/E6a4CntomRpZVsCbFUs3+F1B2MWAsIpTDD630RaGxQIDajRbxEzScQkJxdGKXDaZxwwP4+qtnmUtfRboA6GclORuUK2WF+6ItoAbZm3b3jelUC8yqxTxhVzPgAdj7AEe9oEHGmBtaXu4wSSalrkqNuiFiF+ZCQIDAQABAoGBAId8yc+ifu0zRbDgfbleTq0o1DW8j0beVd0xJlBZYA7GyZxCAA4yvOy4QGoTtOr6b/gEH2pWJ+gxuUlkKtZ/++zk66thluBGHCN6j0FY46pjZWASyzSc59bPqmE0v4XNT/bu6+VfEGZA0ATK2Fu/c8yNONWV47NSI/n6nI2Zbv7BAkEA+KPWEFuLAKDOgAn6gJKc7qfQw5Qk4RzNs3me9FWh+/miCvBHio3dOqhdzjwnjXpWzU5UzA93dyk/7DQ3tTiefwJBAMInM1clpnHBg5XAdz+B3CgPSiDJ/4Xx31PhViE3oHIZHNu++HWS5azKESAbmyMKCQjhb7UY6h2b2nfQh6NUFHcCQGuviabL/wfmnYkWyUemOBGk3OXX46EbuHti0VVBQUbAd04FgvafOpGNGhOYOgksUyvYISHAER2q3+SNORNj0kECQEue5RpOadPo4Y2UV13/AHcB7Ydz5fiPysJrBBcQCYgnS9wzN6bjvl1cnur4laZCJF63H8FToOxDZgZAzHPLLeUCQQDEFisoRWSyp25yoedbvOcCGhZ8zFziqYWthRS8uEykoNlBP8WmWVas+UJz5JYV32unRTSHGY6ZlJBLiySbdPy3-----END RSA PRIVATE KEY-----"
     }
   ]
 }
