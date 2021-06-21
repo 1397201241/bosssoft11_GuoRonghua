@@ -5,13 +5,14 @@ import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css';
 import VueRouter from "vue-router";
-import Login from "./views/login/Login";
+import Login from "./views/login/index";
 import Home from "./views/home/index"
 
 import Navigation from "./components/Navigation/index";
 import UserList from './views/userList/index';
 import ShoppingCart from './views/shoppingCart/index';
 import ItemCard from './views/itemCard/index';
+import {getToken} from "./utils/auth";
 
 
 Vue.use(ElementUI);
@@ -45,7 +46,7 @@ const routes=[
             },
             {
                 path:'ItemCard',
-                meta:{title:'商品信息'},
+                meta:{title:'商品信息',requireAuth:true},
                 component:ItemCard
             }
         ]
@@ -57,7 +58,26 @@ const router=new VueRouter(
       routes
     }
 );
-
+//全局钩子，路由拦截(权限相关)
+router.beforeEach((to, from, next) => {
+    if (to.meta.requireAuth) {
+        let token=getToken();
+        if (token) {
+            //判断用户信息是否已获取，这里只能通过长度判断
+            if (store.state['login'].user.length===0){
+                store.dispatch('login/getInfo')
+            }else{
+                console.log(store.state['login'].user.length);
+                console.log('有了？')
+            }
+            next()
+        } else {
+            next({path: '/'})
+        }
+    } else {
+        next()
+    }
+});
 new Vue({
     router,
     store,
