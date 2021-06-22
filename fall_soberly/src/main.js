@@ -12,6 +12,7 @@ import Navigation from "./components/Navigation/index";
 import UserList from './views/userList/index';
 import ShoppingCart from './views/shoppingCart/index';
 import ItemCard from './views/itemCard/index';
+import OSS from './components/Oss/index';
 import {getToken} from "./utils/auth";
 
 
@@ -48,6 +49,12 @@ const routes=[
                 path:'ItemCard',
                 meta:{title:'商品信息',requireAuth:true},
                 component:ItemCard
+            }
+            ,
+            {
+                path:'OSS',
+                meta:{title:'商品信息'},
+                component:OSS
             }
         ]
     }
