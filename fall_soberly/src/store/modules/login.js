@@ -73,7 +73,7 @@ const actions = {
                     //获取用户ID对应的角色ID
                     getRole(info.id).then(res=>{
                         const user_role=res;
-                        //获取权限ID
+                        //获取角色ID对应的权限ID
                         getPermissionID(user_role.rid)
                             .then(permission_id=>{
                                 info.rid=user_role.rid;
