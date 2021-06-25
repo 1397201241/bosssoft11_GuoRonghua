@@ -3,6 +3,7 @@
         <label for="select_files" class="select_files" :class="{upLoading:isUploading}">选取文件</label>
         <input type="file" multiple  style="display: none;" id="select_files"
                @change="select_files" ref="file" :disabled="isUploading"/>
+        <!--<el-progress :text-inside="true" :stroke-width="16" :percentage="percent"></el-progress>-->
         <ul class="img-container">
             <li v-for="(item,index) in imageList" :key="index"
             :style="{background:`url(${item}) no-repeat center/contain`  }"
@@ -29,6 +30,7 @@
 
                 }),
                 imageList:[],
+                percent:0,
                 isUploading:false,
                 host: 'https://oss-guoronghua.oss-cn-shenzhen.aliyuncs.com',
                 policyText : {
@@ -43,7 +45,7 @@
 
         },
         methods:{
-
+            //选择文件
             // eslint-disable-next-line vue/no-dupe-keys
             select_files(){
                 //可选链
@@ -53,16 +55,18 @@
                     alert('最多选取9张');
                     return false
                 }
+                //上传的文件
                 const files=[];
                 for (const file of newFiles){
                     const fileSize=file.size/1024/1024;
                     if (fileSize>10){
-                        alert('文件大于10M');
-                        return false
+                        //大文件分片上传
+                        this.handleCustomUpload(file)
                     }else files.push(file)
                 }
                 this.uploadFilesByOSS(files)
             },
+            //上传文件
             uploadFilesByOSS(files){
                 this.isUploading=true;
                 const uploadRequest=[];
@@ -76,20 +80,44 @@
                         })
                     }))
                 }
-                //成功回调
+                //成功的回调
                 Promise.allSettled(uploadRequest).then(res=>{
                     const imgs=[];
                     for (const item of res){
                         if(item.status==='fulfilled'){
+                            //下载保存链接
                             imgs.push(item.value)
                         }
                     }
-                    console.log(res);
                     this.imageList=imgs;
                     this.isUploading=false
                 }).catch(err=>{
                     console.log(err)})
+            },
+            //分片上传
+            handleCustomUpload (file) {
+                console.log('正在上传......');
+                const fileName = `/${+new Date()}/${file.name}`;// 定义唯一的文件名
+                console.log(fileName);
+                // 此方法用来实现OSS的分片上传
+                this.client.multipartUpload(fileName, file, {
+                    /*progress(pct) {
+                        this.percent=Number(pct * 100).toFixed(0)
+                        console.log(pct)
+                    }*/
+                }).then((result) => {
+                    const { res } = result;
+                    if (res && res.status === 200) {
+                        const url = res.requestUrls[0].split('?')[0];
+                        this.imageList.push(url);
+                        console.log(url)
+                    }
+                }).catch((err) => {
+                    console.log(`阿里云OSS分片上传图片失败回调`, err)
+                })
             }
+            //下载
+
         }
     }
 </script>
