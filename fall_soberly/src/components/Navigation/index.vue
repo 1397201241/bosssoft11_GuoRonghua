@@ -66,14 +66,14 @@
             };
         },
         created() {
+
+        },
+        mounted() {
             this.getPermissions();
-            console.log(this.cantChangeRole)
         },
         methods: {
             getPermissions(){
-                const permissions=this.$store.state.login.permissions;
-                console.log(this.$store.state.login)
-                if (permissions.includes('CHANGE_ROLE')===false){
+                if (this.$store.state.login.permissions.includes('CHANGE_ROLE')===false){
                     this.cantChangeRole=true;
                 }
             },
