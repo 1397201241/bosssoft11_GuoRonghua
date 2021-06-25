@@ -6,12 +6,13 @@
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navigation/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navigation/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/modules/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/cart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/itemCard/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/itemCard/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/login/Login.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/shoppingCart/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/shoppingCart/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/modules/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/home/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/home/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/login/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/login/index.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/userList/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/userList/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +23,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="Vue Single File Component" />
       </list>
     </option>
   </component>
@@ -44,7 +46,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/utils" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/Oss" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -58,12 +60,13 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="G:\项目\bosssoft11_GuoRonghua\fall_soberly\src\utils" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\项目\bosssoft11_GuoRonghua\fall_soberly\src\components\Oss" />
       <recent name="G:\项目\bosssoft11_GuoRonghua\fall_soberly\src\utils" />
       <recent name="G:\项目\bosssoft11_GuoRonghua\fall_soberly\src\api" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\项目\bosssoft11_GuoRonghua\fall_soberly\src\utils" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -87,7 +90,14 @@
       <workItem from="1624030484688" duration="2531000" />
       <workItem from="1624033026845" duration="11000" />
       <workItem from="1624075947326" duration="14887000" />
-      <workItem from="1624236791947" duration="3534000" />
+      <workItem from="1624236791947" duration="4138000" />
+      <workItem from="1624261156106" duration="16298000" />
+      <workItem from="1624292979811" duration="79000" />
+      <workItem from="1624328135888" duration="13342000" />
+      <workItem from="1624454511825" duration="623000" />
+      <workItem from="1624491062429" duration="16166000" />
+      <workItem from="1624531218433" duration="10548000" />
+      <workItem from="1624580490752" duration="12329000" />
     </task>
     <servers />
   </component>
@@ -95,10 +105,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="71" key="#ESLint" timestamp="1624004153383">
+    <state x="361" y="71" key="#ESLint" timestamp="1624289016223">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="71" key="#ESLint/0.0.1536.824@0.0.1536.824" timestamp="1624004153383" />
+    <state x="361" y="71" key="#ESLint/0.0.1536.824@0.0.1536.824" timestamp="1624289016223" />
     <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1623389441249">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
