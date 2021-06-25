@@ -11,12 +11,12 @@
             <el-submenu index="2">
                 <template slot="title">
                     <i class="el-icon-location"></i>
-                    <span slot="title" >客户管理</span>
+                    <span slot="title" >用户管理</span>
                 </template>
 
                 <el-menu-item-group>
-                    <el-menu-item index="2-1" @click="$router.push('/Home/UserList')">客户列表</el-menu-item>
-                    <el-menu-item index="2-2">客户介绍</el-menu-item>
+                    <el-menu-item index="2-1" @click="$router.push('/Home/UserList')">用户列表</el-menu-item>
+                    <el-menu-item index="2-2" @click="$router.push('/Home/ChangeRole')" :disabled="cantChangeRole">设置角色</el-menu-item>
                 </el-menu-item-group>
                 <el-submenu index="2-4">
                     <span slot="title">客户订单</span>
@@ -32,7 +32,7 @@
 
                 <el-menu-item-group>
                     <el-menu-item index="3-1" @click="$router.push('/Home/ShoppingCart')">我的购物车</el-menu-item>
-                    <el-menu-item index="3-2">客户介绍</el-menu-item>
+                    <el-menu-item index="3-2" >客户介绍</el-menu-item>
                 </el-menu-item-group>
                 <el-submenu index="3-4">
                     <span slot="title">客户订单</span>
@@ -57,6 +57,7 @@
         data() {
             return {
                 isCollapse: true,
+                cantChangeRole:false,
                 /*props:{
                     user:{
                         type:Object
@@ -64,12 +65,18 @@
                 }*/
             };
         },
+        created() {
+            this.getPermissions();
+            console.log(this.cantChangeRole)
+        },
         methods: {
-            /*goUserlist(){
-                this.$router.push({
-                    path:'/Home/UserList',
-                })
-            },*/
+            getPermissions(){
+                const permissions=this.$store.state.login.permissions;
+                console.log(this.$store.state.login)
+                if (permissions.includes('CHANGE_ROLE')===false){
+                    this.cantChangeRole=true;
+                }
+            },
             handleOpen(key, keyPath) {
                 console.log(key, keyPath);
             },
