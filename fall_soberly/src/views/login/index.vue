@@ -130,7 +130,7 @@
                             validator:FormValidate().Form().Name,
                             trigger:'blur'
                         },
-                        { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' },
+                        { min: 3, max: 12, message: '长度在 3 到 12 个字符', trigger: 'blur' },
                     ],
                     password:[
                         {
@@ -173,7 +173,7 @@
             userAuthentication(username,encryptPassword){
                 //用户组
                 let users=[];
-                for (let user of this.$store.state.login.account){
+                for (let user of this.$store.state.login.user){
                     users.push(user['username'])
                 }
                 //用户存在判断
@@ -189,7 +189,7 @@
                             let decryptPassword=jsEncrypt.decrypt(encryptPassword);
                             this.$store.dispatch('login/userAuthentication',{username,decryptPassword}).then(()=>{
                                 this.$router.push({
-                                    path:'/Home/ItemCard',
+                                    path:'/Home/UserList',
                                     query:{
                                         user:{username},
                                         // user:user
@@ -210,7 +210,7 @@
             },
             //获取用户账号密码
             getAccount(){
-                this.$store.dispatch('login/getAccount')
+                this.$store.dispatch('login/getUser')
             },
             //登录
             handleLogin() {
@@ -265,7 +265,6 @@
                         verification_code+=txt;
                         context.font = 'bold 25px 微软雅黑';
                         context.fillStyle = getColor();
-                        console.log(getColor())
                         //从此步开始，为字母旋转
                         context.translate(x, y);
                         let deg = Math.random() * 70 * Math.PI / 180;
