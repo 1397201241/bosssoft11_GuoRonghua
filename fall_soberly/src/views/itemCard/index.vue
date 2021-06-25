@@ -39,7 +39,6 @@
         },
         created:function(){
             // 初始化状态
-            /*this.$store.dispatch('login')*/
             this.getItemsList();
         },
         methods:{
