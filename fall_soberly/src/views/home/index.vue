@@ -20,6 +20,25 @@
             </el-header>
             <!--main content-->
             <el-main>
+                <el-container v-if="$route.path==='/Home'">
+                    <!--<el-form :model="information" :rules="rules" ref="ruleForm" label-width="100px" id="addCustomer" class="demo-ruleForm">
+                        <el-form-item label="客户ID" prop="id">
+                            <el-input v-model.number="information.id"></el-input>
+                        </el-form-item>
+                        <el-form-item label="角色" prop="role">
+                            <el-input v-model="information.role"></el-input>
+                        </el-form-item>
+                        <el-form-item label="姓名" prop="username">
+                            <el-input v-model="information.username"></el-input>
+                        </el-form-item>
+                        <el-form-item label="地址" prop="address">
+                            <el-input v-model="information.address"></el-input>
+                        </el-form-item>
+                        <el-form-item label="手机" prop="phone">
+                            <el-input v-model="information.phone"></el-input>
+                        </el-form-item>
+                    </el-form>-->
+                </el-container>
                 <router-view></router-view>
             </el-main>
         </el-container>
@@ -31,6 +50,7 @@
 <script>
 
     import Navigation from "../../components/Navigation/index";
+    import {FormValidate} from "../../utils/validate";
 
     export default {
         name:'Home',
@@ -39,19 +59,65 @@
         },
         data() {
             return {
-                user:[],
+                user:{},
+                information: {
+                    id:'',
+                    sex:'',
+                    name: '',
+                    address: '',
+                    tel: ''
+                },
                 isCollapse:true,
+                //表单校验
+                rules: {
+                    id: [
+                        { required: true, message: '请输入customerID', trigger: 'blur' },
+                        { type:'number', message: '客户ID须为数值型', trigger: 'blur' }
+                    ],
+                    role:[
+                        { required: true, message: '请输入客户性别', trigger: 'blur' },
+                    ],
+                    username: [
+                        { required: true, message: '请输入活动名称', trigger: 'blur' },
+                        { min: 2, max: 5, message: '长度在 2 到 5 个字符', trigger: 'blur' }
+                    ],
+                    address: [
+                        { required: true, message: '请输入地址', trigger: 'blur' },
+                        { min: 2, max: 5, message: '长度在 2 到 5 个字符', trigger: 'blur' }
+                    ],
+                    phone: [
+                        {
+                            required: true,
+                            message: '请输入正确的手机号码',
+                            trigger: 'blur',validator:FormValidate().Form().Tel
+                        },
+                    ]
+                }
             }
         },
         created() {
             console.log(window.screen.width );
-            console.log(window.screen.height )
+            console.log(window.screen.height );
+
         },
         mounted() {
-            this.user=this.$route.query.user
+            this.user=this.$route.query.user;
+            this.getInfo();
         },
         updated() {
 
+        },
+        methods:{
+            getInfo(){
+                console.log(this.$store.state.login.info[0]);
+                this.information=this.$store.state.login.info[0]
+            },
+            handleOpen(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            handleClose(key, keyPath) {
+                console.log(key, keyPath);
+            }
         },
         computed:{
             breadCrumbTitle(){
@@ -73,14 +139,6 @@
                 }*!/
                 console.log(from.path);
             }*/
-        },
-        methods:{
-            handleOpen(key, keyPath) {
-                console.log(key, keyPath);
-            },
-            handleClose(key, keyPath) {
-                console.log(key, keyPath);
-            }
         }
     };
 </script>
