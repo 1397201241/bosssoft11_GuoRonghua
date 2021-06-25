@@ -9,14 +9,28 @@ export function login(data) {
 }
 
 export function getInfo(token) {
-  return fetch('http://localhost:3000/account?username='+token)
+  return fetch('http://localhost:3000/user?username='+token)
       .then(res=>res.json())
       .then(myJson=>myJson[0]).catch(err=> console.log(err));
-  /*return request({
-    url: '/vue-element-admin/user/info',
-    method: 'get',
-    params: { token }
-  })*/
+}
+
+export function getRole(uid) {
+  return fetch('http://localhost:3000/user_role?uid='+uid)
+      .then(res=>res.json())
+      .then(myJson=>myJson[0]).catch(err=> console.log(err));
+}
+
+export function getPermissionID(rid) {
+  return fetch('http://localhost:3000/role_permission?rid='+rid)
+      .then(res=>res.json())
+      .then(myJson=>myJson[0].permission_id)
+      .catch(err=> console.log(err));
+}
+
+export async function getPermission(permission_id) {
+  return fetch('http://localhost:3000/permission/'+permission_id)
+      .then(res=>res.json())
+      .catch(err=> console.log(err));
 }
 
 export function logout() {
