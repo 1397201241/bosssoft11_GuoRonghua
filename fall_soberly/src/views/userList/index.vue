@@ -193,6 +193,7 @@
 
         },
         methods: {
+            //获取用户权限
             getPermissions(){
                 const permissions=this.$store.state.login.permissions;
                 if (permissions.includes('ADD_USER')===false){
