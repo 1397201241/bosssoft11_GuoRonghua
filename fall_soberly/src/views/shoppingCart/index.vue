@@ -43,6 +43,7 @@
                             size="small">
                         修改
                     </el-button>
+                    <!--todo:删除功能哪去了-->
                     <el-button
                             @click.native.prevent="deleteRow(scope.$index, cart_item)"
                             type="text"
