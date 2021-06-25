@@ -1,20 +1,20 @@
 import {getToken, setToken,} from '../../utils/auth'
-import {getInfo} from '../../api/user'
+import {getInfo, getPermission, getRole,getPermissionID} from '../../api/user'
 import {get} from "../../utils/request";
 // 登录组件状态信息
 const state = () => ({
     token:getToken(),
     //账户信息
-    account: [],
+    user: [],
     //用户信息
-    user:[]
+    info:[]
 
 });
 
 // getters 相当于计算属性
 const getters = {
-    user:state=>{
-        return state.user
+    info:state=>{
+        return state.info
     }
 };
 
@@ -24,28 +24,32 @@ const mutations = {
         state.token = token
     },
     //全体用户账号密码，todo:不安全做法
-    SET_ACCOUNT: (state, account) => {
-        state.account=account
+    SET_USER: (state, user) => {
+        state.user=user
     },
     //设置用户信息
-    SET_USER: (state, user) => {
-        state.user.push(user);
+    SET_INFO: (state, info) => {
+        state.info=info;
+    },
+    //设置用户信息
+    SET_PERMISSIONS: (state, permissions) => {
+        state.permissions=permissions;
     }
 };
 
 // actions 内部可以执行异步操作，context.commit()提交mutations来修改状态
 const actions = {
     //获取用户账号密码
-    getAccount: ({commit}) => {
-        get('http://localhost:3000/account').then(res=>{
-            commit('SET_ACCOUNT',res)
+    getUser: ({commit}) => {
+        get('http://localhost:3000/user').then(res=>{
+            commit('SET_USER',res)
         }).catch(err=>console.log(err));
     },
     //用户验证
     userAuthentication({commit,state},params) {
         return new Promise((resolve) => {
             //todo:下面需要封装为一个登录的API
-            for (let user of state.account){
+            for (let user of state.user){
                 //用户匹配判断
                 if (params.username===user['username']&&params.decryptPassword===user['password']){
                     //服务端
@@ -57,14 +61,53 @@ const actions = {
             }
         });
     },
-    getInfo(/*{commit,state},params*/{commit,state}) {
+    getInfo({commit,state}) {
         return new Promise(() => {
-            //获取token相应的用户信息
+            //获取username(即token)对应的用户信息
             getInfo(state.token)
                 .then(response=>{
-                    commit('SET_USER',response);
+                    //基本信息
+                    let info=response;
+                    let permissions=[];
+                    let permissionRequest=[];
+                    //获取用户ID对应的角色ID
+                    getRole(info.id).then(res=>{
+                        const user_role=res;
+                        //获取权限ID
+                        getPermissionID(user_role.rid)
+                            .then(permission_id=>{
+                                info.rid=user_role.rid;
+                                info.permission_id=permission_id;
+                                for (const id of permission_id){
+                                    permissionRequest.push(
+                                        getPermission(id).then(permission=>permission.title)
+                                            .catch(err=>{
+                                                console.log(err)
+                                            })
+                                    )
+                                }
+                                Promise.allSettled(permissionRequest).then(res=>{
+                                    for (const item of res){
+                                        if(item.status==='fulfilled'){
+                                            permissions.push(item.value)
+                                        }
+                                    }
+                                }).then(()=>{
+                                    commit('SET_PERMISSIONS',permissions);
+                                });
+                                commit('SET_INFO',info);
+                            })
+                            .catch(err=>{
+                                console.log(err)
+                            })
+                    })
+                        .catch(err=>{
+                            console.log(err)
+                        });
                 })
-                .catch(err=>{console.log(err)})
+                .catch(err=> {
+                    console.log(err)
+                })
         });
     },
     //获取公钥
