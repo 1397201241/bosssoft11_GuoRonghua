@@ -148,9 +148,6 @@
                 },
             }
         },
-        /*watch(){
-
-        },*/
         created:function(){
             this.getAccount();
         },
