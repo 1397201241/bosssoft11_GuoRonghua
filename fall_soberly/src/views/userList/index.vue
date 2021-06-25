@@ -10,7 +10,7 @@
             </el-form-item>
         </QueryPanel>
         <el-container class="action_bar">
-            <el-button type="primary" v-on:click="dialogVisible=true">添加</el-button>
+            <el-button type="primary" v-on:click="dialogVisible=true" :class="{addButton:cantAddCustomer}" :disabled="cantAddCustomer"> 添加</el-button>
             <el-button type="primary">修改</el-button>
             <el-button type="primary">删除</el-button>
             <el-button type="primary">复制</el-button>
@@ -112,6 +112,7 @@
                         修改
                     </el-button>
                     <el-button
+                            :disabled="cantDeleteCustomer"
                             @click.native.prevent="deleteRow(scope.$index, customers)"
                             type="text"
                             size="small">
@@ -125,13 +126,14 @@
 
 <script>
     import QueryPanel from "../../components/QueryPanel/index";
-    import Format from "../../utils/validate"
+    import {FormValidate} from "../../utils/validate"
     export default {
         name: "UserList",
         components: {QueryPanel},
         data() {
             return {
-
+                cantAddCustomer:false,
+                cantDeleteCustomer:false,
                 //对话框状态
                 dialogVisible:false,
                 changeVisible:false,
@@ -176,7 +178,7 @@
                         {
                             required: true,
                             message: '请输入正确的手机号码',
-                            trigger: 'blur',validator:Format.FormValidate.Form().Tel
+                            trigger: 'blur',validator:FormValidate().Form().Tel
                         },
                     ]
                 }
@@ -185,8 +187,21 @@
         created:function(){
             // 初始化状态
             this.getCustomerList();
+            this.getPermissions();
+        },
+        mounted() {
+
         },
         methods: {
+            getPermissions(){
+                const permissions=this.$store.state.login.permissions;
+                if (permissions.includes('ADD_USER')===false){
+                    this.cantAddCustomer=true;
+                }
+                if (permissions.includes('DELETE_USER')===false){
+                    this.cantDeleteCustomer=true;
+                }
+            },
             //获取客户列表,更新表格
             getCustomerList(){
                 fetch('http://localhost:3000/customer')
@@ -347,7 +362,8 @@
         width: 300px;
         margin-left: 90px;
     }
-    #userList .action_bar .el-button{
-
+    #userList .addButton{
+        background-color: #ccc;
+        border-color: #ccc;
     }
 </style>
