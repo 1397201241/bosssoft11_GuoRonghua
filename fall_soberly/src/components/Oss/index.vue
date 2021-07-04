@@ -69,7 +69,7 @@
             //上传文件
             uploadFilesByOSS(files){
                 this.isUploading=true;
-                const uploadRequest=[];
+                let uploadRequest=[];
                 for (const file of files){
                     uploadRequest.push(new Promise((resolve, reject) => {
                         this.client.put(file.name,file).then(res=>{
@@ -82,7 +82,7 @@
                 }
                 //成功的回调
                 Promise.allSettled(uploadRequest).then(res=>{
-                    const imgs=[];
+                    let imgs=[];
                     for (const item of res){
                         if(item.status==='fulfilled'){
                             //下载保存链接

@@ -53,7 +53,7 @@
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        let newCustomer={
+                        const newCustomer={
                             "id": this.$refs[formName].model.customerID,
                             "name":this.$refs[formName].model.name,
                             "ename": "San Zhang",

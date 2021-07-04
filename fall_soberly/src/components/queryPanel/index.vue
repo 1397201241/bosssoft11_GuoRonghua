@@ -28,7 +28,6 @@
 export default {
   props: {
     queryModel: { type: Object, required: true },
-
     labelWidth: { type: String, default: '120px' }
   },
   data() {

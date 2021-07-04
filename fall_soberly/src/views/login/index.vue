@@ -98,19 +98,6 @@
                     callback();
                 }
             };
-            /*//密码校验
-            const validatePassword = (rule,value,callback)=>{
-                //密码正则
-                let password=/^[0-9a-zA-Z_]{6,20}$/g;
-                if (!value) {
-                    return callback(new Error('密码不能为空'))
-                }
-                if (!password.test(value)) {
-                    callback(new Error('密码需包含数字、大小写字母或者下划线'))
-                } else {
-                    callback()
-                }
-            };*/
             return {
                 verificationC:'',
                 loginForm:{

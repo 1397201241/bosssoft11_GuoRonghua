@@ -17,25 +17,20 @@
             <el-button type="primary">导出</el-button>
         </el-container>
         <el-dialog
-                title="添加客户"
+                title="添加角色"
                 :visible.sync="dialogVisible"
                 width="600px"
                 :before-close="handleClose">
-            <el-form :model="addCustomerForm" :rules="rules" ref="ruleForm" label-width="100px" id="addCustomer" class="demo-ruleForm">
-                <el-form-item label="客户ID" prop="customerID">
-                    <el-input v-model.number="addCustomerForm.customerID"></el-input>
+            <el-form :model="addRoleForm" :rules="rules" ref="ruleForm" label-width="100px" id="addCustomer" class="demo-ruleForm">
+                <el-form-item label="角色ID" prop="id">
+                    <el-input v-model.number="addRoleForm.id"></el-input>
                 </el-form-item>
-                <el-form-item label="性别" prop="sex">
-                    <el-input v-model="addCustomerForm.sex"></el-input>
+                <el-form-item label="角色名" prop="name">
+                    <el-input v-model="addRoleForm.name"></el-input>
                 </el-form-item>
-                <el-form-item label="姓名" prop="name">
-                    <el-input v-model="addCustomerForm.name"></el-input>
-                </el-form-item>
-                <el-form-item label="地址" prop="address">
-                    <el-input v-model="addCustomerForm.address"></el-input>
-                </el-form-item>
-                <el-form-item label="手机" prop="tel">
-                    <el-input v-model="addCustomerForm.tel"></el-input>
+
+                <el-form-item label="description" prop="tel">
+                    <el-input v-model="addRoleForm.description"></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="onAddBtnClick('ruleForm')">立即添加</el-button>
@@ -44,25 +39,19 @@
             </el-form>
         </el-dialog>
         <el-dialog
-                title="客户信息修改"
+                title="角色信息修改"
                 :visible.sync="changeVisible"
                 width="600px"
                 :before-close="handleClose">
-            <el-form :model="changeCustomer" :rules="rules" ref="ruleForm" label-width="100px" id="changeCustomer" class="demo-ruleForm">
-                <el-form-item label="客户ID" prop="id">
-                    <el-input v-model.number="changeCustomer.id"></el-input>
+            <el-form :model="changeRole" :rules="rules" ref="ruleForm" label-width="100px" id="changeCustomer" class="demo-ruleForm">
+                <el-form-item label="角色ID" prop="id">
+                    <el-input v-model.number="changeRole.id"></el-input>
                 </el-form-item>
-                <el-form-item label="性别" prop="sex">
-                    <el-input v-model.number="changeCustomer.sex"></el-input>
+                <el-form-item label="角色名" prop="name">
+                    <el-input v-model="changeRole.name"></el-input>
                 </el-form-item>
-                <el-form-item label="姓名" prop="name">
-                    <el-input v-model="changeCustomer.name"></el-input>
-                </el-form-item>
-                <el-form-item label="地址" prop="address">
-                    <el-input v-model="changeCustomer.address" ></el-input>
-                </el-form-item>
-                <el-form-item label="手机" prop="tel">
-                    <el-input v-model="changeCustomer.tel"></el-input>
+                <el-form-item label="角色描述" prop="description">
+                    <el-input v-model="changeRole.description"></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="onChangeBtnClick('ruleForm')">立即修改</el-button>
@@ -71,31 +60,25 @@
             </el-form>
         </el-dialog>
         <el-table
-                :data="customers"
+                :data="roles"
                 stripe
                 border
-                style="width: 1200px;border: 1px solid #ebeef5 ;margin: 30px 0 0 90px">
+                style="width: 800px;border: 1px solid #ebeef5 ;margin: 30px 0 0 90px">
             <el-table-column
-                    prop="sex"
-                    label="客户性别"
+                    prop="id"
+                    label="不该显示的角色ID"
                     width="180"
                     fixed
             >
             </el-table-column>
             <el-table-column
                     prop="name"
-                    label="姓名"
+                    label="角色名"
                     width="180">
             </el-table-column>
             <el-table-column
-                    prop="address"
-                    label="地址"
-                    width="360"
-            >
-            </el-table-column>
-            <el-table-column
-                    prop="tel"
-                    label="手机"
+                    prop="description"
+                    label="角色描述"
                     width="180"
             >
             </el-table-column>
@@ -106,14 +89,14 @@
             >
                 <template slot-scope="scope">
                     <el-button
-                            @click.native.prevent="changeRow(scope.$index, customers)"
+                            @click.native.prevent="changeRow(scope.$index, roles)"
                             type="text"
                             size="small">
                         修改
                     </el-button>
                     <el-button
                             :disabled="!$store.state.login.permissions.includes('DELETE_USER')"
-                            @click.native.prevent="deleteRow(scope.$index, customers)"
+                            @click.native.prevent="deleteRow(scope.$index, roles)"
                             type="text"
                             size="small">
                         删除
@@ -126,8 +109,8 @@
 
 <script>
     import queryPanel from "../../components/queryPanel/index";
-    import {FormValidate} from "../../utils/validate"
-    import {del, post, put, get} from "../../utils/request";
+    import {del, get, post, put} from "../../utils/request";
+
     export default {
         name: "index",
         components: {queryPanel},
@@ -139,17 +122,15 @@
                 //修改的客户姓名，手机号码
                 customerQuery:{name:'',mobile:''},
                 //客户信息
-                customers: [],
+                roles: [],
                 //添加的客户
-                addCustomerForm: {
-                    customerID:'',
-                    sex:'',
+                addRoleForm: {
+                    id:'',
                     name: '',
-                    address: '',
-                    tel: ''
+                    description: '',
                 },
                 //修改的客户
-                changeCustomer:{
+                changeRole:{
                     ID:'',
                     sex:'',
                     name: '',
@@ -158,81 +139,72 @@
                 },
                 //表单校验
                 rules: {
-                    customerID: [
-                        { required: true, message: '请输入customerID', trigger: 'blur' },
+                    id: [
+                        { required: true, message: '请输入角色ID', trigger: 'blur' },
                         { type:'number', message: '客户ID须为数值型', trigger: 'blur' }
                     ],
-                    sex:[
-                        { required: true, message: '请输入客户性别', trigger: 'blur' },
-                    ],
                     name: [
-                        { required: true, message: '请输入活动名称', trigger: 'blur' },
-                        { min: 2, max: 5, message: '长度在 2 到 5 个字符', trigger: 'blur' }
+                        { required: true, message: '请输入角色名', trigger: 'blur' },
+                        { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur' }
                     ],
-                    address: [
-                        { required: true, message: '请输入地址', trigger: 'blur' },
-                        { min: 2, max: 5, message: '长度在 2 到 5 个字符', trigger: 'blur' }
-                    ],
-                    tel: [
-                        {
-                            required: true,
-                            message: '请输入正确的手机号码',
-                            trigger: 'blur',validator:FormValidate().Form().Tel
-                        },
+                    description: [
+                        { required: true, message: '请输入角色描述', trigger: 'blur' },
+                        { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur' }
                     ]
                 }
             }
         },
         created:function(){
             // 初始化状态
-            this.getCustomerList();
+            this.getRoleList();
         },
         mounted() {
 
         },
         methods: {
             //获取客户列表,更新表格
-            getCustomerList() {
-                get('http://localhost:3000/customer')
-                    .then(myJson => {
-                            this.customers = myJson;
+            getRoleList() {
+                get('http://localhost:3000/role')
+                    .then(
+                        myJson => {
+                            this.roles = myJson;
                         }
                     ).catch(err => console.log(err));
             },
             //查询客户
-            onQueryBtnClick(){
+            onQueryBtnClick() {
                 let {name, mobile} = this.customerQuery;
-                if (name!==''){
+                if (name !== '') {
                     get("http://localhost:3000/customer?name=" + name)
-                        .then(myJson => {
-                            this.customers = myJson;
-                        }
+                        .then(
+                            myJson => {
+                                this.roles = myJson;
+                            }
                         ).catch(err => console.log(err));
-                }else if (mobile!==''){
-                    get("http://localhost:3000/customer?mobile="+mobile)
-                        .then(myJson=>{
-                            this.customers=myJson;
-                        })
-                        .catch(err=> console.log(err));
-                }else alert("请输入您要查询的名字或手机号码")
+                } else if (mobile !== '') {
+                    get("http://localhost:3000/customer?mobile=" + mobile)
+                        .then(
+                            myJson => {
+                                this.roles = myJson;
+                            }
+                        ).catch(err => console.log(err));
+                } else alert("请输入您要查询的名字或手机号码")
             },
             //添加客户
             onAddBtnClick(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
                         let newCustomer = {
-                            "id": this.$refs[formName].model.customerID,
-                            "sex": this.$refs[formName].model.sex,
+                            "id": this.$refs[formName].model.id,
                             "name": this.$refs[formName].model.name,
-                            "tel": this.$refs[formName].model.tel,
-                            "address": this.$refs[formName].model.address
+                            "description": this.$refs[formName].model.description
                         };
                         if (newCustomer) {
-                            post("http://localhost:3000/customer", newCustomer)
+                            post("http://localhost:3000/role", newCustomer)
                                 .then(
                                     myJson => {
                                         console.log(myJson);
-                                        this.getCustomerList();
+                                        this.getRoleList();
                                     }
                                 ).catch(err => console.log(err));
                         }
@@ -248,22 +220,20 @@
             onChangeBtnClick(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        let newCustomer={
+                        let newRole={
                             "id": this.$refs[formName].model.id,
-                            "sex": this.$refs[formName].model.sex,
                             "name":this.$refs[formName].model.name,
-                            "tel": this.$refs[formName].model.tel,
-                            "address": this.$refs[formName].model.address
+                            "description": this.$refs[formName].model.description
                         };
-                        if (newCustomer){
-                            put("http://localhost:3000/customer/"+newCustomer.id,newCustomer)
-                                .then(()=>{
-                                    //刷新
-                                    this.getCustomerList();
-                                })
-                                .catch(err=>
-                                    console.log(err)
-                                );
+                        if (newRole){
+                            put("http://localhost:3000/customer/"+newRole.id, newRole)
+                                .then(
+                                    myJson=>{
+                                        console.log(myJson);
+                                        this.getRoleList();
+                                        console.log(this.roles);
+                                    }
+                                ).catch(err=> console.log(err));
                         }
                     } else {
                         console.log('error submit!!');
@@ -275,20 +245,21 @@
             },
             //删除客户信息
             deleteRow(index, rows) {
-                let deleteCustomer = rows[index];
-                if (deleteCustomer) {
-                    del("http://localhost:3000/customer/" + deleteCustomer.id, deleteCustomer)
+                let deleteRole=rows[index];
+                if (deleteRole){
+                    del("http://localhost:3000/role/"+deleteRole.id)
                         .then(
-                            myJson => {
+                            myJson=>{
                                 console.log(myJson);
-                                this.getCustomerList();
+                                this.getRoleList();
+                                console.log(this.roles);
                             }
-                        ).catch(err => console.log(err));
+                        ).catch(err=> console.log(err));
                 }
             },
             //打开修改客户对话框
             changeRow(index, rows) {
-                this.changeCustomer=rows[index];
+                this.changeRole=rows[index];
                 this.changeVisible=true;
                 //rows.splice(index, 1);
             },

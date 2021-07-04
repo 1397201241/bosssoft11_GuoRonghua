@@ -7,7 +7,9 @@ const state = () => ({
     //账户信息
     user: [],
     //用户信息
-    info:[]
+    info:[],
+    //权限信息
+    permissions:[]
 
 });
 
@@ -80,6 +82,7 @@ const actions = {
                                 info.permission_id=permission_id;
                                 for (const id of permission_id){
                                     permissionRequest.push(
+                                        //获取权限ID对应的权限
                                         getPermission(id).then(permission=>permission.title)
                                             .catch(err=>{
                                                 console.log(err)
@@ -124,8 +127,6 @@ const actions = {
     },
 
 };
-
-
 
 export default {
     namespaced: true,

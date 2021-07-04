@@ -4,34 +4,29 @@
       "id": 2,
       "sex": "男",
       "name": "郭荣华",
-      "ename": "San Zhang",
-      "assistant_code": "zs",
-      "type": "CustomerType",
-      "contacts": 15273166485,
-      "mobile": 15273166485,
       "tel": "15273166485",
       "address": "湖南长沙"
     },
     {
       "id": 3,
-      "sex": "女",
+      "sex": "男",
       "name": "夏🗡冰",
       "tel": "15273164545",
       "address": "湖南长沙"
     },
     {
-      "id": 4,
+      "id": 40,
       "sex": "女",
-      "name": "林林林",
-      "tel": "13471561522",
-      "address": "广西玉林"
+      "name": "姓名啊",
+      "tel": "15273166485",
+      "address": "地址啊"
     },
     {
-      "id": 5,
-      "sex": "男",
-      "name": "女的",
-      "tel": "15577776666",
-      "address": "福建的"
+      "id": 7,
+      "sex": "女",
+      "name": "郭容华",
+      "tel": "15273166485",
+      "address": "广西玉林"
     }
   ],
   "user": [
@@ -69,11 +64,13 @@
   "role": [
     {
       "id": 1,
-      "name": "general_user"
+      "name": "general_user",
+      "description": "普通用户"
     },
     {
       "id": 2,
-      "name": "admin"
+      "name": "admin",
+      "description": "管理员"
     }
   ],
   "user_role": [
@@ -84,12 +81,12 @@
     },
     {
       "id": 2,
-      "uid": 2,
-      "rid": 2
+      "rid": 2,
+      "uid": 2
     },
     {
       "id": 3,
-      "rid": 1,
+      "rid": 2,
       "uid": 3
     }
   ],
@@ -136,9 +133,16 @@
       "id": 2,
       "rid": 1,
       "permission_id": [
+        1,
         2,
-        3
+        3,
+        4
       ]
+    }
+  ],
+  "info": [
+    {
+      "token": ""
     }
   ],
   "items": [
@@ -218,6 +222,24 @@
       "description": "体脂称",
       "img_path": "http://i1.mifile.cn/a1/pms_1555659431.52713594!140x140.jpg",
       "list_price": 99
+    },
+    {
+      "id": 807,
+      "username": "test",
+      "item_id": "2",
+      "quantity": 1,
+      "description": "体脂称",
+      "img_path": "http://i1.mifile.cn/a1/pms_1555659431.52713594!140x140.jpg",
+      "list_price": 99
+    },
+    {
+      "id": 438,
+      "username": "test",
+      "item_id": "1",
+      "quantity": 1,
+      "description": "XM11 Ultra",
+      "img_path": "http://i1.mifile.cn/a1/pms_1617008568.53329550!280x280.jpg",
+      "list_price": 5998
     }
   ],
   "JSEncrypt": [

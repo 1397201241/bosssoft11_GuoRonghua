@@ -27,7 +27,7 @@ export function getPermissionID(rid) {
       .catch(err=> console.log(err));
 }
 
-export async function getPermission(permission_id) {
+export function getPermission(permission_id) {
   return fetch('http://localhost:3000/permission/'+permission_id)
       .then(res=>res.json())
       .catch(err=> console.log(err));

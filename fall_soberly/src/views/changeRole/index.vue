@@ -48,7 +48,7 @@
 </template>
 
 <script>
-    import {get} from "../../utils/request";
+    import {get, put} from "../../utils/request";
 
     export default {
         name: "index",
@@ -64,15 +64,13 @@
         methods:{
             //获取用户列表,更新表格
             getUserList(){
-                fetch('http://localhost:3000/user')
-                    .then(res=>res.json())
+                get('http://localhost:3000/user')
                     .then(
                         myJson=>{
                             this.users=[];
                             for (const item of myJson){
                                 let mergeInfo=item;
-                                fetch('http://localhost:3000/user_role?uid='+item.id)
-                                    .then(res=>res.json())
+                                get('http://localhost:3000/user_role?uid='+item.id)
                                     .then(myJson=>{
                                             mergeInfo.rid=myJson[0].rid;
                                             this.users.push(mergeInfo)
@@ -90,19 +88,11 @@
                     changeCustomer.rid=2;
                     changeCustomer.uid=rows[index].id;
                     console.log(changeCustomer);
-                    fetch("http://localhost:3000/user_role/"+res[0].id,{
-                        method:'PUT',
-                        body:JSON.stringify(changeCustomer),
-                        headers:{
-                            'Content-Type':'application/json',
-                        },
-                    })
-                        .then(response=>response.json())
+                    put("http://localhost:3000/user_role/"+res[0].id, changeCustomer)
                         .then(myJson=>{
                                 console.log(myJson);
                                 //刷新
                                 this.getUserList();
-
                             }
                         ).catch(err=> console.log(err));
                 });
